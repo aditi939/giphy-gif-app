@@ -1,27 +1,26 @@
 import React from 'react';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  return (
-    <div className="pagination">
+  const pages = [];
+
+  // Calculate the range of pages to display (e.g., 1, 2, 3 for the first set)
+  const rangeStart = Math.max(currentPage - 1, 1);
+  const rangeEnd = Math.min(currentPage + 1, totalPages);
+
+  for (let page = rangeStart; page <= rangeEnd; page++) {
+    pages.push(
       <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
+        key={page}
+        onClick={() => onPageChange(page)}
+        className={currentPage === page ? 'active' : ''}
       >
-        Previous
+        {page}
       </button>
-      <span>
-        Page {currentPage} of {totalPages}
-      </span>
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        Next
-      </button>
-    </div>
-  );
+    );
+  }
+
+  return <div className="pagination">{pages}</div>;
 };
 
 export default Pagination;
-
 
