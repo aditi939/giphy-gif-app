@@ -1,8 +1,8 @@
 import React from 'react';
-
+// Functional component for pagination
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = [];
-
+  // Calculate the range of page numbers to display
   const rangeStart = Math.max(currentPage - 1, 1);
   const rangeEnd = Math.min(currentPage + 1, totalPages);
 
@@ -14,7 +14,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       </button>
     );
   }
-
+ // Generate buttons for each page in the range
   for (let page = rangeStart; page <= rangeEnd; page++) {
     pages.push(
       <button
